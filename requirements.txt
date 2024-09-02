@@ -3,3 +3,4 @@ pandas
 selenium
 webdriver_manager
 beautifulsoup4
+undetected-chromedriver
