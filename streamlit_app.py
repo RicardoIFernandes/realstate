@@ -8,6 +8,12 @@ from webdriver_manager.chrome import ChromeDriverManager
 from bs4 import BeautifulSoup
 import time
 
+chrome_options = Options()
+chrome_options.add_argument("--headless")  # Run Chrome in headless mode
+chrome_options.add_argument("--no-sandbox")  # Required for Streamlit Cloud
+chrome_options.add_argument("--disable-dev-shm-usage")  # Overcome limited resource problems
+
+
 st.set_page_config(layout="wide")
 
 st.sidebar.title('Montgomery County, MD')
@@ -50,7 +56,8 @@ def main():
     value_limitation_list = []
     net_appraised_list = [] 
 
-    driver = webdriver.Chrome() 
+    service = Service(ChromeDriverManager().install())
+    driver = webdriver.Chrome(service=service, options=chrome_options)
 
     for i in lista:
         url = 'https://mcad-tx.org/property-search'
