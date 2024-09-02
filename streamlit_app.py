@@ -6,6 +6,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
+import undetected_chromedriver as uc
 from bs4 import BeautifulSoup
 import time
 
@@ -59,6 +60,7 @@ def main():
 
     service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service, options=chrome_options)
+    driver = uc.Chrome(headless=True)
 
     for i in lista:
         url = 'https://mcad-tx.org/property-search'
